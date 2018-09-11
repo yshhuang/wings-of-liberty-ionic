@@ -1,0 +1,7 @@
+{
+  "name": "wings-of-liberty-ionic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

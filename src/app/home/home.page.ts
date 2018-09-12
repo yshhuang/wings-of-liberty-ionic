@@ -18,6 +18,7 @@ export class HomePage implements OnInit {
   };
   topTitle: string;
   topContent: string;
+  articles = [];
 
   constructor(private appService: AppService) { }
 
@@ -32,9 +33,22 @@ export class HomePage implements OnInit {
       this.topTitle = this.config['top']['article'];
       this.appService.getFileContext('/blog/' + this.config['top']['topic'] + '/' + this.topTitle + '.md').then(
         context => {
-          this.topContent = context.substring(0, 100) + '……';
+          this.topContent = context;
         }
       );
+
+      const blogs = this.config.blogs;
+      blogs.forEach(element => {
+        const article = {
+          title: element.article,
+          topic: element.topic,
+          context: '',
+          utl: '/blog/' + element.topic + '/' + element.article + '.md'
+        };
+        this.appService.getFileContext(article.utl).then(context => article.context = context);
+        this.articles.push(article);
+        console.log(this.articles);
+      });
     });
   }
 }

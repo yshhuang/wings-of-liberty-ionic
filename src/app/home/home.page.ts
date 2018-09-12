@@ -47,7 +47,6 @@ export class HomePage implements OnInit {
         };
         this.appService.getFileContext(article.utl).then(context => article.context = context);
         this.articles.push(article);
-        console.log(this.articles);
       });
     });
   }

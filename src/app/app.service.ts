@@ -11,6 +11,10 @@ export class AppService {
 
   constructor(private http: HttpClient, ) { }
 
+  getBaseUrl(): string {
+    return this.baseUrl;
+  }
+
   getConfigJson(): Observable<any> {
     return this.http.get(this.baseUrl + '/config.json');
   }
